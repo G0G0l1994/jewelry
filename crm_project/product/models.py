@@ -7,8 +7,11 @@ TYPE_CHOICE = [('повеска','подвеска'),
                ('брошь','брошь'), 
                ('серьги','серьги'), 
                ('комплект', 'комплект'),
-               ('пусеты', 'пусеты') 
-               ('другое', 'другое')]
+               ('пусеты', 'пусеты'), 
+               ('другое', 'другое'),
+               ('колье','колье'),
+               ('браслет','браслет')
+               ]
 
 
 
@@ -19,6 +22,7 @@ class Product(models.Model):
     customer = models.ForeignKey(Customer,related_name='customer', on_delete=models.CASCADE)
     price = models.IntegerField()
     create_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(auto_created=False)
     expiration_date = models.DateField(auto_created=False)
     comment = models.TextField()
     

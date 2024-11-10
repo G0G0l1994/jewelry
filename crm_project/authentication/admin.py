@@ -36,7 +36,7 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ['username', 'email']
+    list_display = ['username', 'email', 'role']
 
 admin.site.register(User,CustomUserAdmin)
 # Register your models here.

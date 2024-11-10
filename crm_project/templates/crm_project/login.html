@@ -1,0 +1,17 @@
+{% extends "crm_project/base.html" %}
+
+{%block title%}LogIn{%endblock%}
+
+{% block content %}
+<div class="container col-6">
+    <h1>This is login page</h1>
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+        <button class="py-4 px-8 bg-teal-500 text-white rounded-xl" type="submit">LogIn</button>
+    </form>
+    <hr>
+</div>
+
+{% endblock %}

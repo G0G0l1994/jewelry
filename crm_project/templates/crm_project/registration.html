@@ -1,0 +1,18 @@
+{% extends "crm_project/base.html" %}
+
+{% block title%}Registrations{%endblock%}
+
+
+
+{% block content %}
+<div class="container col-6">
+ <h1>This is register</h1>
+
+ <form method="POST"  action="" autocomplete="off">
+    {% csrf_token %}
+    {{form.as_p}}
+    
+    
+    <button class="py-4 px-8 bg-teal-500 text-white rounded-xl" type="submit">Register</button>
+ </form>
+{% endblock%}
