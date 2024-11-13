@@ -1,4 +1,5 @@
 from django.db import models
+
 from customer.models import Customer
 
 
@@ -12,7 +13,13 @@ TYPE_CHOICE = [('повеска','подвеска'),
                ('колье','колье'),
                ('браслет','браслет')
                ]
-
+STATUS_CHOICE = (
+    ("согласование","согласование"),
+    ("в работе","в работе"),
+    ("правки","правки"),
+    ("выполнен","выполнен"),
+    ("одобрение","одобрение"),("на росте", "на росте")
+)
 
 
 class Product(models.Model):
@@ -22,8 +29,11 @@ class Product(models.Model):
     customer = models.ForeignKey(Customer,related_name='customer', on_delete=models.CASCADE)
     price = models.IntegerField()
     create_date = models.DateField(auto_now_add=True)
-    start_date = models.DateField(auto_created=False)
+    start_date = models.DateField(auto_created=False, null=True)
     expiration_date = models.DateField(auto_created=False)
     comment = models.TextField()
+    status = models.CharField(max_length=20,choices=STATUS_CHOICE,blank=True,null=True)
+
     
-# Create your models here.
+    def __str__(self):
+        return f'{self.name} {self.start_date} {self.status}'
