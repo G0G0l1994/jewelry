@@ -1,0 +1,40 @@
+{% extends 'crm_project/base.html'%}
+
+{%block title%}{{product.name}}{%endblock%}
+
+{%block content%}
+<div class="py-6 px-6">
+    <div class=" mt-6 flex justify-between">
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Название</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Тип</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Заказчик</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Цена</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Создан</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Начат</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Дата сдачи</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Комментарий</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Статус заказа</p>
+    </div>
+        <div class=" mt-6 flex justify-between">
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{product.name}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.type_product}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.customer}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.price}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.create_date}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.start_date}} </p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.expiration_date}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.comment}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.status}}</p>
+            
+            
+        </div>
+    {% if product.start_date == None%} 
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        <button class="py-4 px-8 bg-blue-500 text-white rounded-xl" type="submit">Start</button>
+
+                    </form>
+                {%endif%} 
+
+</div>
+{%endblock%}

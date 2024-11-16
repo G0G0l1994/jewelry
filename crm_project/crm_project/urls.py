@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(template_name='crm_project/login.html'),name='login'),
     path('logout/', logout_user, name='logout'),
     path('dashboard/', include('dashboard.urls')),
-    path('dashboard/product/', include('product.urls'))
+    path('dashboard/product/', include('product.urls')),
+    path('dashboard/customer/', include('customer.urls'))
 
 ]

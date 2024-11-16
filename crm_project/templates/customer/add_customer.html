@@ -1,0 +1,18 @@
+{% extends 'crm_project/base.html'%}
+
+{%block title%}Новый заказчик{% endblock%}
+
+{%block content%}
+    <div class="py-6 px-6">
+        <h1 class="text-xl">Новый заказчик</h1>
+
+        <form method="post" action=".">
+            {% csrf_token%}
+
+
+            {{form.as_p}}
+
+            <button class="py-4 px-8 bg-teal-500 text-white rounded-xl" type="submit">Create</button>
+        </form>
+    </div>
+{%endblock%}

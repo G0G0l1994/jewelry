@@ -6,5 +6,5 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard(request):
 
-    return render(request, 'crm_project/dashboard.html')
+    return render(request, 'dashboard/dashboard.html')
 # Create your views here.
