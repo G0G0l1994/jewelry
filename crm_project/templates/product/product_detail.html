@@ -34,7 +34,13 @@
                         <button class="py-4 px-8 bg-blue-500 text-white rounded-xl" type="submit">Start</button>
 
                     </form>
-                {%endif%} 
+                {%endif%}
+    <hr class="my-4">
+
+        <a href="{% url 'product_delete' product.id %}" class="mb-6 px-6 py-6 bg-red-500 text-white rounded-xl"> Удалить изделие</a>
+
+    <hr class="my-20">
+        <a href="{% url 'product_list'%}" class="mb-6 px-6 py-6 bg-teal-500 text-white rounded-xl">Назад</a>
 
 </div>
 {%endblock%}

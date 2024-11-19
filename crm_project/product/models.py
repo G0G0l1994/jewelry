@@ -25,15 +25,15 @@ STATUS_CHOICE = (('принят','принят'),
 
 class Product(models.Model):
 
-    name = models.CharField(max_length=100, blank = True)
-    type_product = models.CharField(max_length=30,choices=TYPE_CHOICE,blank=True,default='кольцо')
+    name = models.CharField(max_length=100)
+    type_product = models.CharField(max_length=30,choices=TYPE_CHOICE,default='кольцо')
     customer = models.ForeignKey(Customer,related_name='customer', on_delete=models.CASCADE)
     price = models.IntegerField()
     create_date = models.DateField(auto_now_add=True)
     start_date = models.DateField(auto_created=False, null=True)
     expiration_date = models.DateField(auto_created=False)
     comment = models.TextField()
-    status = models.CharField(max_length=20,choices=STATUS_CHOICE,blank=True,null=True)
+    status = models.CharField(max_length=20,choices=STATUS_CHOICE,null=True)
 
     
     def __str__(self):

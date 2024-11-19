@@ -1,0 +1,29 @@
+{% extends 'crm_project/base.html'%}
+
+{%block title%}{{product.name}}{%endblock%}
+
+{%block content%}
+<div class="py-6 px-6">
+    <div class=" mt-6 flex justify-between">
+        <p class="py-4 px-2 bg-gray-300 font-semibold w-full">ФИО</p>
+        <p class="py-4 px-2 bg-gray-300  font-semibold w-full">Контактный телефон</p>
+        <p class="py-4 px-2 bg-gray-300  font-semibold w-full">Комментарий</p>
+        
+    </div>
+        <div class=" mt-6 flex justify-between">
+            <p class="py-6 px-6 bg-gray-200 font-semibold w-full">{{customer.name}}</p>
+            <p class="py-6 px-6 bg-gray-200 font-semibold w-full">{{ customer.phone_number}}</p>
+            <p class="py-6 px-6 bg-gray-200 font-semibold w-full">{{ customer.comment}}</p>
+            
+            
+        </div>
+    
+    <hr class="my-4">
+
+        <a href="{% url 'customer_delete' customer.id %}" class="mb-6 px-6 py-6 bg-red-500 text-white rounded-xl"> Удалить контакт</a>
+
+    <hr class="my-20">
+        <a href="{% url 'customer_list'%}" class="mb-6 px-6 py-6 bg-teal-500 text-white rounded-xl">Назад</a>
+
+</div>
+{%endblock%}
