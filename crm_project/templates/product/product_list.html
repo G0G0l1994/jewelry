@@ -28,7 +28,7 @@
                     No
                     {%endif%}</p>
                 <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.expiration_date}}</p>
-                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.status}}</p>
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.get_status_display}}</p>
 
                 <form method="post" action="{% url 'product_update' product.id%}">
                     {% csrf_token%}
