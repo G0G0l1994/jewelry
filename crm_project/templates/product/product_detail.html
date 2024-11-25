@@ -14,6 +14,7 @@
         <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Дата сдачи</p>
         <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Комментарий</p>
         <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Статус заказа</p>
+        <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Время работы</p>
     </div>
         <div class=" mt-6 flex justify-between">
             <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{product.name}}</p>
@@ -25,16 +26,24 @@
             <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.expiration_date}}</p>
             <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.comment}}</p>
             <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.get_status_display}}</p>
+            <p class="py-6 px-6 bg-teal-500 font-semibold w-full">{{ product.work_time}}</p>
             
             
         </div>
-    {% if product.start_date == None%} 
+    {% if product.on_work == False%} 
                     <form method="post" action=".">
                         {% csrf_token %}
                         <button class="py-4 px-8 bg-blue-500 text-white rounded-xl" type="submit">Start</button>
 
                     </form>
-                {%endif%}
+    {%else%}
+    
+                    <form method="post" action="{% url 'update_time' product.id %}">
+                        {% csrf_token %}
+                        <button class="py-4 px-8 bg-blue-500 text-white rounded-xl" type="submit">Stop</button>
+
+                    </form>
+    {%endif%}
     <hr class="my-4">
 
         <a href="{% url 'product_delete' product.id %}" class="mb-6 px-6 py-6 bg-red-500 text-white rounded-xl"> Удалить изделие</a>

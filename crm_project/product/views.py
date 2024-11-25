@@ -1,23 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils.timezone import localtime
 
-from datetime import datetime
+from datetime import datetime, timezone
+
 
 from .forms import AddProductForm
 from .models import Product
+from .service import stop_work
 
 @login_required
 def add_product(request):
 
     if request.method == 'POST':
-
+        
         form = AddProductForm(request.POST)
         
 
         if form.is_valid():
             
             product = form.save()
+            product.created_by = request.user
             product.save()
 
             messages.success(request, 'Изделие добавлено')
@@ -47,8 +51,11 @@ def product_detail(request, pk):
     form = AddProductForm()
 
     if request.method == 'POST':
-        date = datetime.now()
-        product.start_date = date.today()
+        
+        product.start_date = localtime()
+        product.on_work = True
+        product.status = '2'
+
         
         product.save()
 
@@ -91,6 +98,21 @@ def product_delete(request,pk):
 
     messages.success(request, 'Изделие удалено')
     return redirect('product_list')
+
+@login_required
+def update_time(request,pk):
+    query = get_object_or_404(Product,pk=pk)
+    local = localtime()
+
+    if request.method == 'POST':
+        
+        work = stop_work(query, localtime=local)
+        query.on_work = False
+        query.work_time= work
+        query.save()
+
+
+        return redirect('product_detail',pk)
 
 
 
