@@ -5,4 +5,32 @@
 {% block content%}
     <h1 class="text-xl">Dashboard</h1>
 
+    <div class="py-6 px-6">
+        
+        <div class=" mt-6 flex justify-between">
+            <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Название</p>
+            <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Создан</p>
+            <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Начат</p>
+            <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Дата сдачи</p>
+            <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Статус</p>
+        </div>
+
+        {% for product in products%}
+            <div class="flex justify-between">
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">
+                    <a href="{% url 'product_detail' product.id%}">{{product.name}}</a>
+                </p> 
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.create_date}}</p>
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.start_date}}</p>
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.expiration_date}}</p>
+                <p class="py-4 px-2 font-semibold w-full bg-gray-100">{{product.get_status_display}}</p>
+
+                <form method="post" action="{% url 'product_update' product.id%}">
+                    {% csrf_token%}
+                    <button class="py-4 px-8 bg-teal-500 text-white rounded-xl" type="submit">Update</button>
+                </form>
+            </div>                                                      
+        {%endfor%}
+    </div>
+
 {% endblock%}

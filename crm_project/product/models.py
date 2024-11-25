@@ -30,7 +30,7 @@ class Product(models.Model):
     created_by = models.ForeignKey(User, related_name='product',on_delete=models.CASCADE,null=True)
     on_work = models.BooleanField(default=False,null=True)
     worker = models.ForeignKey(User,related_name='worker',null=True,on_delete=models.CASCADE)
-    work_time = models.TimeField(default='00:00:00', null=True)
+    work_time = models.TextField(max_length=200,default='00 дней 00 часов 00 минут', null=True)
     type_product = models.CharField(max_length=30,choices=TYPE_CHOICE,default='кольцо')
     customer = models.ForeignKey(Customer,related_name='customer', on_delete=models.CASCADE)
     price = models.IntegerField()

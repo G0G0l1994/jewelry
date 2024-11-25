@@ -53,6 +53,7 @@ def product_detail(request, pk):
     if request.method == 'POST':
         
         product.start_date = localtime()
+        
         product.on_work = True
         product.status = '2'
 
@@ -102,13 +103,15 @@ def product_delete(request,pk):
 @login_required
 def update_time(request,pk):
     query = get_object_or_404(Product,pk=pk)
-    local = localtime()
+    
 
     if request.method == 'POST':
-        
+        local = localtime()
         work = stop_work(query, localtime=local)
+        
         query.on_work = False
         query.work_time= work
+        query.start_date = local
         query.save()
 
 
