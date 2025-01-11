@@ -17,7 +17,7 @@ def add_product(request):
         
         form = AddProductForm(request.POST)
         
-
+        print(form.data)
         if form.is_valid():
             
             product = form.save()
@@ -37,8 +37,14 @@ def add_product(request):
 
 @login_required
 def product_list(request):
-
+    
     products = Product.objects.all().order_by('expiration_date')
+
+    if request.user.role == '3d':
+
+
+        products = products.filter(worker_id=request.user.id)
+
 
     return render(request,'product/product_list.html', {'products': products})
 

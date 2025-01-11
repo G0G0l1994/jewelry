@@ -21,15 +21,17 @@ STATUS_CHOICE = (('1','принят'),
     ("5", "на росте"),
     ("6","выполнен")
 )
-    
-
+# MANAGER_CHOICE = sorted([(i.id, f'{i.last_name} {i.first_name}') for i in User.objects.filter(role = "manager")])
+# MANAGER_CHOICE = sorted([(i.id, f'{i.last_name} {i.first_name}') for i in User.objects.filter(role = "manager")])
+# WORKER_CHOICE = sorted([(int(i.id), f'{i.last_name} {i.first_name}') for i in User.objects.filter(role = "3d")])
+# WORKER_CHOICE = sorted([(i.id, f'{i.last_name} {i.first_name}') for i in User.objects.filter(role = "3d")])
 
 class Product(models.Model):
 
     name = models.CharField(max_length=100)
     created_by = models.ForeignKey(User, related_name='product',on_delete=models.CASCADE,null=True)
     on_work = models.BooleanField(default=False,null=True)
-    worker = models.ForeignKey(User,related_name='worker',null=True,on_delete=models.CASCADE)
+    worker = models.ForeignKey(User,related_name='worker', null=True,on_delete=models.CASCADE)
     work_time = models.TextField(max_length=200,default='00 дней 00 часов 00 минут', null=True)
     type_product = models.CharField(max_length=30,choices=TYPE_CHOICE,default='кольцо')
     customer = models.ForeignKey(Customer,related_name='customer', on_delete=models.CASCADE)

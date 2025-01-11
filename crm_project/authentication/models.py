@@ -6,6 +6,7 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=50,blank = True, default='3d')
     contact_number = models.CharField(max_length=30,blank = True, null =True)
+   
 
     REQUIRED_FIELDS = ['first_name', 'last_name','role']
     USERNAME_FIELD = 'username'

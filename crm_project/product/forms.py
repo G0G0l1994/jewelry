@@ -1,10 +1,12 @@
 from django import forms
 
-from .models import Product
 
+from .models import Product
+from authentication.models import User
 
 class AddProductForm(forms.ModelForm):
     
+
     class Meta:
         model = Product
         fields = ("name",
@@ -13,5 +15,9 @@ class AddProductForm(forms.ModelForm):
                   "price",
                   "expiration_date",
                   "comment",
-                  "status")
-
+                  "status",
+                  "worker"
+                  )
+    def __init__(self,*args,**kwargs):
+        super(AddProductForm,self).__init__(*args,**kwargs)
+        self.fields['worker'].queryset = User.objects.filter(role='3d')
