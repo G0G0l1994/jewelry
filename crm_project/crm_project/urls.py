@@ -16,6 +16,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('dashboard/', include('dashboard.urls')),
     path('dashboard/product/', include('product.urls')),
-    path('dashboard/customer/', include('customer.urls'))
+    path('dashboard/customer/', include('customer.urls')),
+    path('api/v1/', include('api.urls'))
 
 ]
