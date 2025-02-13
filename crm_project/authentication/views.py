@@ -14,9 +14,11 @@ def registration(request):
 
         if form.is_valid():
             user = form.save()
-            # User.create(user)
-        
-        return redirect('/login/')
+            return redirect('/login/')
+        # else:
+        #     # return redirect('/registrations/')
+        #     return render(request, 'crm_project/registration.html', {'form': form})
+
     else:
         form = CustomUserCreateForm()
         
