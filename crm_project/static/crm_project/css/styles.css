@@ -1,0 +1,20 @@
+.container {
+    width: 100%; /* Занимает всю ширину экрана */
+    max-width: 500px; /* Максимальная ширина */
+}
+
+@media (max-width: 480px) {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Навбар */
+nav {
+    display: flex;
+    justify-content: space-between; /* Разделяет логотип и кнопки */
+    align-items: center; /* Выравнивает элементы по вертикали */
+    padding: 1rem 1.5rem; /* Отступы внутри навбара */
+    background-color: #38b2ac; /* Цвет фона (teal) */
+  }
